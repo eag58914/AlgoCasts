@@ -36,6 +36,7 @@ function steps(n, row = 0, stair = '') {
 module.exports = steps;
 
 //solution 1
+//time complexity for this algo is n^2
 // function steps(n) {
 // 	for (let row = 0; row < n; row++) {
 // 		let stair = '';
