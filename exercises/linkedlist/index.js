@@ -8,11 +8,11 @@ class Node {
 		this.next = next;
 	}
 }
-
 class LinkedList {
 	constructor() {
 		this.head = null;
 	}
+
 	insertFirst(data) {
 		this.head = new Node(data, this.head);
 	}
@@ -23,6 +23,7 @@ class LinkedList {
 			counter++;
 			node = node.next;
 		}
+
 		return counter;
 	}
 	getFirst() {
@@ -50,7 +51,6 @@ class LinkedList {
 		this.head = this.head.next;
 	}
 	removeLast() {
-		//two temp var previous(first) and node()second
 		if (!this.head) {
 			return;
 		}
@@ -60,6 +60,7 @@ class LinkedList {
 		}
 		let previous = this.head;
 		let node = this.head.next;
+
 		while (node.next) {
 			previous = node;
 			node = node.next;
@@ -69,12 +70,43 @@ class LinkedList {
 	insertLast(data) {
 		const last = this.getLast();
 		if (last) {
-			//there ar some exisiting nodes in our chain
+			//there are some existing nodes in our chain
 			last.next = new Node(data);
 		} else {
 			//the chain is empty
 			this.head = new Node(data);
 		}
+	}
+	getAt(index) {
+		let counter = 0;
+		let node = this.head;
+
+		if (!this.head) {
+			return null;
+		} else {
+			while (node) {
+				if (counter === index) {
+					return node;
+				}
+				node = node.next;
+				counter++;
+			}
+			return null;
+		}
+	}
+	removeAt(index) {
+		if (!this.head) {
+			return;
+		}
+		if (index === 0) {
+			this.head = this.head.next;
+			return;
+		}
+		let previous = this.getAt(index - 1);
+		if (!previous || !previous.next) {
+			return;
+		}
+		previous.next = previous.next.next;
 	}
 }
 
